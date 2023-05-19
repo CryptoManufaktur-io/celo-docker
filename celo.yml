@@ -29,6 +29,8 @@ services:
       - --http
       - --http.addr
       - 0.0.0.0
+      - --http.port
+      - ${RPC_PORT}
       - --http.vhosts=*
       - --http.corsdomain=*
       - --http.api
@@ -36,6 +38,8 @@ services:
       - --ws
       - --ws.addr
       - 0.0.0.0
+      - --ws.port
+      - ${WS_PORT}
       - --ws.api
       - web3,eth,net
       - --ws.origins=*
@@ -66,7 +70,7 @@ services:
       - traefik.http.routers.${RPC_HOST:-celo}lb.entrypoints=websecure
       - traefik.http.routers.${RPC_HOST:-celo}lb.rule=Host(`${RPC_LB:-celo-lb}.${DOMAIN}`)
       - traefik.http.routers.${RPC_HOST:-celo}lb.tls.certresolver=letsencrypt
-      - traefik.http.services.${RPC_HOST:-celo}.loadbalancer.server.port=8545
+      - traefik.http.services.${RPC_HOST:-celo}.loadbalancer.server.port=${RPC_PORT}
       - traefik.http.routers.${WS_HOST:-celows}.service=${WS_HOST:-celows}
       - traefik.http.routers.${WS_HOST:-celows}.entrypoints=websecure
       - traefik.http.routers.${WS_HOST:-celows}.rule=Host(`${WS_HOST:-celows}.${DOMAIN}`)
@@ -75,7 +79,7 @@ services:
       - traefik.http.routers.${WS_HOST:-celows}lb.entrypoints=websecure
       - traefik.http.routers.${WS_HOST:-celows}lb.rule=Host(`${WS_LB:-celows-lb}.${DOMAIN}`)
       - traefik.http.routers.${WS_HOST:-celows}lb.tls.certresolver=letsencrypt
-      - traefik.http.services.${WS_HOST:-celows}.loadbalancer.server.port=8546
+      - traefik.http.services.${WS_HOST:-celows}.loadbalancer.server.port=${WS_PORT}
       - metrics.scrape=true
       - metrics.path=/debug/metrics/prometheus
       - metrics.port=6060
