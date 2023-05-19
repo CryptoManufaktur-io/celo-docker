@@ -7,7 +7,7 @@ for traefik and Prometheus.
 
 `ext-network.yml` assumes a `traefik` network exists, where traefik and prometheus run
 
-`.ethd install` can install docker-ce for you
+`./ethd install` can install docker-ce for you
 
 `cp default.env .env`, adjust variables, and `./ethd up`
 
