@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  celo:
+    ports:
+      - 8545:8545/tcp
+      - 8546:8546/tcp
