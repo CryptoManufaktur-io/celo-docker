@@ -19,8 +19,7 @@ services:
       - ${P2P_PORT}:${P2P_PORT}/udp
     <<: *logging
     entrypoint:
-      - sh
-      - /run_geth_in_docker.sh
+      - geth
       - --datadir
       - /var/lib/celo
       - --syncmode
